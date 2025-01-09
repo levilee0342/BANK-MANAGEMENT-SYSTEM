@@ -1,0 +1,8 @@
+ConnectionString: Data Source=DESKTOP-ICQO1SV\MSSQLSERVER1;Initial Catalog=NGANHANG;User ID=LTN;password=1234
+Parameter: TANDINHException: One or more queries have failed to execute.
+StackTrace:    at DevExpress.DataAccess.Sql.SqlDataSource.FillInternal(IEnumerable`1 parameters, CancellationToken cancellationToken, String[] queriesToFill)
+   at DevExpress.DataAccess.Sql.SqlDataSource.DevExpress.Data.IListAdapter2.FillList(IServiceProvider serviceProvider, String[] queriesToFill)
+   at DevExpress.DataAccess.Sql.SqlDataSource.DevExpress.Data.IListAdapter.FillList(IServiceProvider serviceProvider)
+   at DevExpress.DataAccess.Sql.SqlDataSource.Fill(IEnumerable`1 sourceParameters, String[] queriesToFill)
+   at DevExpress.DataAccess.Sql.SqlDataSource.Fill()
+   at NGANHANG.Xrpt_LietKeKhachHangTheoTungChiNhanh..ctor(String macn) in D:\CSDLPT_Ngan-Hang\Source\NGANHANG\NGANHANG\Xrpt_LietKeKhachHangTheoTungChiNhanh.cs:line 29
