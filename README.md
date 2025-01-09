@@ -1,75 +1,110 @@
-# Cơ sở dữ liệu phân tán 
+# Banking Management Application
 
-## Ứng dụng Quản lý Hệ thống Ngân hàng
+## Overview
 
-Ứng dụng này cung cấp các chức năng để quản lý hệ thống ngân hàng, bao gồm quản lý khách hàng và nhân viên, giao dịch tài khoản, liệt kê và thống kê, và quản trị. Ứng dụng được tổ chức thành nhiều phần chính, mỗi phần cung cấp các tính năng cụ thể.
-
-## Tổng quan Menu
-
-### A. Cập nhật
-
-1. **Cập nhật Thông tin Khách hàng**
-    - Chức năng thêm, sửa hoặc xóa thông tin khách hàng.
-  
-2. **Mở Tài khoản cho Khách hàng**
-    - SubForm để tạo tài khoản mới cho khách hàng.
-
-3. **Cập nhật Thông tin Nhân viên**
-    - Thêm nhân viên mới.
-    - Xóa nhân viên hiện có.
-    - Chỉnh sửa chi tiết nhân viên.
-    - Chuyển nhân viên qua chi nhánh khác.
-
-4. **Cập nhật Giao dịch của Khách hàng**
-    - Quản lý giao dịch gửi tiền.
-    - Quản lý giao dịch rút tiền.
-    - Quản lý giao dịch chuyển tiền.
-
-### B. Liệt kê - Thống kê
-
-1. **Sao kê Giao dịch của một Tài khoản trong một Khoảng thời gian (@tungay, @denngay)**
-    - Ví dụ đầu ra:
-    ```
-    Số dư đến ngày @tungay - 1: 10.000.000
-
-    Số dư đầu        Ngày        Loại giao dịch    Số tiền      Số dư sau
-    10.000.000       1/3/22      GT                5.000.000     15.000.000
-    15.000.000       7/3/22      CT                7.000.000     8.000.000
-
-    Số dư tới ngày @denngay: 8.000.000
-    ```
-
-2. **Liệt kê các Tài khoản mở trong một Khoảng thời gian của Chi nhánh, của tất cả các Chi nhánh**
-    - Liệt kê tài khoản dựa trên khoảng thời gian và tiêu chí chi nhánh được chỉ định.
-
-3. **Liệt kê các Khách hàng theo từng Chi nhánh**
-    - Liệt kê khách hàng theo chi nhánh.
-    - Sắp xếp khách hàng trong từng chi nhánh theo thứ tự tăng dần của tên.
-
-### C. Quản trị
-
-1. **Nhóm Người dùng: NganHang, ChiNhanh, KhachHang**
-
-    - **Nhóm NganHang:**
-        - Có thể chọn bất kỳ chi nhánh nào để xem báo cáo bằng cách chọn tên chi nhánh và tìm dữ liệu trên phân mảnh tương ứng.
-        - Người dùng trong nhóm này có thể tạo tài khoản mới cùng nhóm.
-
-    - **Nhóm ChiNhanh:**
-        - Có toàn quyền làm việc trên chi nhánh đã đăng nhập.
-        - Người dùng trong nhóm này có thể tạo tài khoản mới cùng nhóm.
-
-    - **Nhóm KhachHang:**
-        - Chỉ có thể xem sao kê tài khoản của chính mình.
-        - Người dùng trong nhóm này không được phép tạo tài khoản mới.
-
-## Sử dụng
-
-Để bắt đầu sử dụng ứng dụng, thực hiện các bước sau:
-
-1. **Đăng nhập**: Tùy theo nhóm người dùng, truy cập các chức năng tương ứng như mô tả trong phần Quản trị.
-2. **Điều hướng**: Sử dụng menu để điều hướng qua các tính năng khác nhau như cập nhật thông tin khách hàng hoặc nhân viên, quản lý giao dịch, liệt kê và tạo thống kê.
-3. **Hoạt động Form**: Sử dụng các chức năng của form để thêm, xóa, phục hồi, ghi, hoặc thoát.
+This project is a comprehensive **Banking Management Application** designed to manage customer accounts, employee records, and transactions across distributed branches. The application includes an intuitive interface, supports SQL Server for data handling, and ensures secure access controls for different user roles.
 
 ---
 
+## Key Features
 
+### Database Distribution
+
+The **NGANHANG** database is distributed across three servers to optimize performance and ensure branch-specific data accessibility:
+1. **Server 1**: Stores customer data and transactions for the **BENTHANH** branch.
+2. **Server 2**: Stores customer data and transactions for the **TANDINH** branch.
+3. **Server 3**: Consolidates customer data from both branches for overarching operations.
+
+> **Note**: Each customer registers with only one branch but can own multiple accounts across branches.
+
+---
+
+### Application Modules
+
+#### **1. Customer Management**
+- Add, update, or delete customer information.
+- Open new accounts for existing customers with intuitive SubForms.
+
+#### **2. Employee Management**
+- Manage employee records, including adding, removing, and editing details.
+- Transfer employees between branches seamlessly.
+
+#### **3. Transaction Management**
+- Enable deposit, withdrawal, and fund transfers for customers.
+
+#### **4. Reporting and Analytics**
+- **Account Statements**:
+  Generate detailed statements for specific accounts over a chosen period, including:
+  - Opening balances
+  - Transaction history
+  - Closing balances
+- **Branch-Specific Analysis**:
+  - List accounts opened within a specific timeframe.
+  - Sort customers by branch and alphabetically by name.
+
+---
+
+### User Role Management
+
+The application supports three user roles, ensuring data security and functional segregation:
+
+1. **Bank Management Group (NGANHANG)**:
+   - Access data and reports for any branch.
+   - Create new accounts within the same group.
+
+2. **Branch Management Group (ChiNhanh)**:
+   - Full control over the branch's data.
+   - Create new accounts within the same group.
+
+3. **Customer Group (KhachHang)**:
+   - View personal account statements only.
+   - Restricted from account creation.
+
+> **Dynamic Access Control**: Permissions are assigned during account creation and enforced on login to determine access to specific partitions or branches.
+
+---
+
+## Technology Stack
+- **Frontend**: **DevExpress**, utilizing its powerful controls to deliver a professional and responsive design.
+- **Backend**: C#
+- **Database**: SQL Server
+- **Languages & Tools**:
+  - **Development Language**: C#
+  - **Visual Studio**: For building the interface and logic code, ensuring a seamless development process.
+  - **SQL Server Management Studio**: For data queries, transactions, and enforcing constraints.
+---
+
+## How to Use
+
+### Setup Instructions:
+1. **Database Configuration**:
+   - Update database connection strings in 'App.config' and 'Program.cs'.
+     
+2. **Run the Application**:
+   - Use Visual Studio.
+
+### Features in Action:
+1. Add new customers, manage employee records, and process transactions.
+2. Generate account statements or analyze branch performance.
+3. Utilize role-specific login to ensure secure data access.
+
+---
+
+## Example Usage
+
+1. Log in to the application with a valid user role.
+2. Navigate to:
+   - **Customer Management**: Add or update customer details.
+   - **Transaction Management**: Process deposits, withdrawals, or transfers.
+3. Access detailed **account statements** and **branch-level reports**.
+4. Ensure secure user access based on the assigned permissions.
+
+---
+
+## Contact
+
+Thank you for reviewing my project!  
+For more information or inquiries, feel free to reach out at:  
+📧 **leetuan0342@gmail.com**
+
+---
