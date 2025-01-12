@@ -4,7 +4,22 @@
 
 This project is a comprehensive **Banking Management Application** designed to manage customer accounts, employee records, and transactions across distributed branches. The application includes an intuitive interface, supports SQL Server for data handling, and ensures secure access controls for different user roles.
 
----
+### **Demo** : 
+    You can check out the project demo at:
+#### **Screenshots**
+
+##### 1. Customer management
+This is the interface for managing customers at a branch.
+![image](https://github.com/user-attachments/assets/cc3badb6-df55-4761-9da3-7658d63b814c)
+
+##### 2. Employee management
+This is the interface for managing employees at a branch.
+![image](https://github.com/user-attachments/assets/47eb30f8-5cea-4dd6-977c-5e6614ea1881)
+
+##### 3. Transaction management
+This is the interface for managing employees at a branch.
+![image](https://github.com/user-attachments/assets/bf861367-bfa5-43ed-bc84-21eb3315a047)
+
 
 ## Key Features
 
